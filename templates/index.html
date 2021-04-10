@@ -1,19 +1,28 @@
 {%load static%}
+{%if user.is_authenticated%}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Chat Rooms</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    What chat room would you like to enter?<br>
-    <input id="room-name-input" type="text" size="100"><br>
-    <input id="room-name-submit" type="button" value="Enter">
-
-    <div style="display: none;" class="alert alert-warning">Fields cannot be blank</div>
+    <div class="container neumorphic-card">
+        What chat room would you like to enter?<br>
+        <div class="row">
+            <input class="neumorphic-input col-lg-8 col-md-8" id="room-name-input" type="text" size="100">
+            <input class="neumorphic-btn col-lg-3 col-md-3 my-btn" id="room-name-submit" type="button" value="Enter">    
+        </div>
+        
+        <div class="alert alert-secondary">Fields cannot be blank</div>
+    </div>
+    
+    
     <script src="{% static 'js/script.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script>
         $('#room-name-input').focus();
         $('#room-name-input').blur(function (){
@@ -40,3 +49,6 @@
     </script>
 </body>
 </html>
+{%else%}
+<h1><a href="/">You have to login</a></h1>
+{%endif%}

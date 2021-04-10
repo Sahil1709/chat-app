@@ -1,14 +1,32 @@
+{%load static%}
+{%if user.is_authenticated%}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
     <title>Chat Room</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    {{request.user.username}}
+    
+    <div class="neumorphic-card container">
+        <div class="row">
+            <div class="col">Hello, {{request.user.username}}</div> 
+            <div class="col">Go To </div>
+            <div class="col"><a href="/">HOME</a></div>
+            <div class="col"><a href="../../chat">CHAT</a></div>
+            <div class="col"><a href="../../logout">LOGOUT</a></div>
+        </div>
+        <textarea style="margin-bottom: 20px;padding: 20px;" class="neumorphic-input" id="chat-log" cols="100" rows="20"></textarea><br>
+        <div class="row">
+            <input class="neumorphic-input col-lg-8 col-md-8" id="chat-message-input" type="text" size="100"><br>
+            <input class="neumorphic-btn col-lg-3 col-md-3 my-btn" id="chat-message-submit" type="button" value="Send">
+        </div>   
+    </div>
+    
+    
+
     {{ room_name|json_script:"room-name" }}
     {{ request.user.username|json_script:"user-name" }}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -51,3 +69,6 @@
     </script>
 </body>
 </html>
+{%else%}
+<h1><a href="/">You have to login</a></h1>
+{%endif%}

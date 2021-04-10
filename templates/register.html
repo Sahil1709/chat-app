@@ -1,0 +1,58 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Register</title>
+</head>
+<body>
+    <!-- <form action="register" method="POST">
+        {% csrf_token %}
+        <input type="text" name="first_name" placeholder="First Name"><br>
+        <input type="text" name="last_name" placeholder="Last Name"><br>
+        <input type="text" name="username" placeholder="set username"><br>
+        <input type="password" name="password" placeholder="set password"><br>
+        <input type="submit" value="Create An Account !">
+    </form> -->
+    <div class="form-container neumorphic-card">
+        <form action="register" method="POST">
+            {%csrf_token%}
+            <div class="form-group">
+                <label for="exampleInputEmail1">First Name :</label>
+                <input class="form-control neumorphic-input" id="exampleInputEmail1" name="first_name" aria-describedby="emailHelp" >
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Last Name :</label>
+                <input class="form-control neumorphic-input" id="exampleInputEmail1" name="last_name" aria-describedby="emailHelp" >
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username :</label>
+                <input class="form-control neumorphic-input" id="exampleInputEmail1" name="username" aria-describedby="emailHelp" placeholder="Set a username" >
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address :</label>
+              <input type="email" class="form-control neumorphic-input" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password :</label>
+              <input type="password" class="form-control neumorphic-input" name="password" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group row">
+                <input type="submit" value="Create An Account !" class="neumorphic-btn col"></input>
+                <div class="col text-center">OR</div>
+                <a class="neumorphic-btn col" href="/">Go Back To Log In</a>
+            </div>  
+        </form>
+        <div class="alert alert-secondary" role="alert">
+            {%for message in messages%}
+            {{message}}
+            {%endfor%}
+        </div>
+    </div>
+</body>
+</html>

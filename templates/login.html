@@ -1,0 +1,51 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    {%if user.is_authenticated %}
+    <div class="neumorphic-card form-container">
+        <h1 class="text-center">Hello {{user.username}}</h1>
+        <div style="margin:20px" class="neumorphic-btn text-center"><a href="chat">Go to Chat</a> </div>
+        <div class="text-center">OR</div>
+        <div style="margin:20px" class="neumorphic-btn text-center"><a  href="logout">Logout</a></div>
+    </div>
+    
+    {%else%}
+    <div class="form-container neumorphic-card">
+        <form action="" method="POST">
+            {%csrf_token%}
+            <div class="form-group">
+              <label for="exampleInputEmail1">Username :</label>
+              <input class="form-control neumorphic-input" id="exampleInputEmail1" name="username" aria-describedby="emailHelp" placeholder="Your username">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password :</label>
+              <input type="password" class="form-control neumorphic-input" name="password" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group row">
+                <input type="submit" value="Log In" class="neumorphic-btn col"></input>
+                <div class="col text-center">OR</div>
+                <a class="neumorphic-btn col" href="register">Create a new Account!</a>
+            </div>  
+        </form>
+        <div class="alert alert-secondary" role="alert">
+            {%for message in messages%}
+            {{message}}
+            {%endfor%}
+        </div>
+    </div>
+    
+    {%endif%}
+    
+
+
+</body>
+</html>
